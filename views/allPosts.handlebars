@@ -1,0 +1,14 @@
+{{#each posts}}
+<div class="card mt-2">
+  <div class="card-header custom-card-header justify-space-between">
+    <h5>
+      <a href="/post/{{id}}">{{title}}</a>
+    </h5>
+    <div>Posted by {{user.username}} on {{format_date createdAt}}
+    </div>
+  </div>
+  <div class="card-body custom-card">
+    <p class="card-text">{{content}}</p>
+  </div>
+</div>
+{{/each}}

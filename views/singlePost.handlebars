@@ -1,0 +1,23 @@
+{{!-- Single Post --}}
+<div class="card">
+  <div class="card-header justify-space-between">
+    <h5> {{title}}</h5>
+    <div>Posted by {{user.username}} on {{format_date createdAt}}
+    </div>
+  </div>
+  <div class="card-body">
+    <p class="card-text">{{content}}</p>
+  </div>
+</div>
+
+{{!-- Comment --}}
+<div class="col-12 mt-2">
+  <form id="guestbook-form">
+    <div class="form-group">
+      <textarea type="text" id="comment" class="form-control" placeholder="Leave a comment...">
+      </textarea>
+    </div>
+    <button type="submit" class="btn custom-btn">Submit</button>
+  </form>
+</div>
+
