@@ -20,7 +20,6 @@ router.get('/', async (req, res) => {
     const posts = dbPostData.map((post) =>
       post.get({ plain: true })
     );
-    console.log("#23 homeroutes.js",posts); 
     // Respond with rendering the template 'homepage' along with data received -- Data has to be packaged into an {} property name you choose in this case posts: and the value is the array of posts that we declared above and console logged.. since they are the same name we can only use one name
     res.render('allPosts', { posts:posts, loggedIn: req.session.loggedIn });
 
@@ -44,7 +43,6 @@ router.get('/post/:id', async (req, res) => {
     });
 
     const post = dpPostData.get({ plain: true });
-    console.log('singlepost', post)
     res.render('singlePost', { 
       ...post,
       loggedIn: req.session.loggedIn 

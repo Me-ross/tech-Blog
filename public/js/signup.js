@@ -1,10 +1,10 @@
 const signupFormHandler = async (event) => {
     event.preventDefault();
-  
+  console.log('arrived at signup function')
     const username = document.querySelector('#user-signup').value.trim();
     const password = document.querySelector('#password-signup').value.trim();
   
-    console.log(username, password);
+    console.log("#7 singup.js", username, password);
   
   const response = await fetch('/api/user', {
       method: 'POST',
@@ -18,10 +18,10 @@ const signupFormHandler = async (event) => {
   
   if (response.ok) {
   // if response ok go to homepage change to dashboard ('/dashboard)
-  document.location.replace('/')
+  document.location.replace('/dashboard')
   } else {
      alert('Incorrect username or password, please try again');
   }
   };
   
-  document.querySelector('signup-form').addEventListener('submit', signupFormHandler);
+  document.querySelector('form').addEventListener('submit', signupFormHandler);

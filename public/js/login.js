@@ -27,4 +27,5 @@ document.location.replace('/dashboard');
 }
 };
 
+
 document.querySelector('form').addEventListener('submit', loginFormHandler);

@@ -14,4 +14,4 @@ const response = await fetch('api/post/:id', {
 });
 console.log(response)
   
-document.querySelector('#comment-form').addEventListener('submit', loginFormHandler);
+document.querySelector('form').addEventListener('submit', loginFormHandler);
