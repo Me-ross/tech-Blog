@@ -8,8 +8,9 @@ const withAuth = require('../utils/auth');
 //   res.send('Render homepage view along with all posts retreived from database.');
 // });
 
-// get all posts testing to see if it works
+// get all posts
 router.get('/', async (req, res) => {
+  console.log('**#13,home-routes.js', req.session)
   try {
     // retrieve all posts from db - since using async have to use corresponding await and save the results of the await in a variable --- getting the value of the await from the Post model so have to import the Model on top using require -- 
     const dbPostData = await Post.findAll({
@@ -19,9 +20,9 @@ router.get('/', async (req, res) => {
     const posts = dbPostData.map((post) =>
       post.get({ plain: true })
     );
-    console.log(posts); 
+    console.log("#23 homeroutes.js",posts); 
     // Respond with rendering the template 'homepage' along with data received -- Data has to be packaged into an {} property name you choose in this case posts: and the value is the array of posts that we declared above and console logged.. since they are the same name we can only use one name
-    res.render('allPosts', { posts:posts });
+    res.render('allPosts', { posts:posts, loggedIn: req.session.loggedIn });
 
   } catch (err) {
     console.log(err);
@@ -44,7 +45,10 @@ router.get('/post/:id', async (req, res) => {
 
     const post = dpPostData.get({ plain: true });
     console.log('singlepost', post)
-    res.render('singlePost', { ...post });
+    res.render('singlePost', { 
+      ...post,
+      loggedIn: req.session.loggedIn 
+    });
 
   } catch (err) {
     console.log(err);
@@ -55,12 +59,38 @@ router.get('/post/:id', async (req, res) => {
 // login route
 router.get('/login', async (req, res) => {
   // res.send('Render login view.');
+  if (req.session.loggedIn) {
+    res.redirect('/dashboard');
+    return;
+  }
   res.render('login');
 });
 
 // singup
 router.get('/signup', async (req, res) => {
-  res.send('Render signup view.');
+  res.render('signup');
+});
+
+// dashboard
+router.get('/dashboard', withAuth, async (req, res) => {
+  try {
+    // Find the logged in user based on the session ID
+    console.log('#74 homeroutes.js', req.session)
+    const userData = await User.findByPk(req.session.userId, {
+      attributes: { exclude: ['password'] },
+      include: [{ 
+        model: Post }],
+    });
+
+    const user = userData.get({ plain: true });
+    console.log('#84user homeroutes.js', user)
+    res.render('dashboard', {
+      ...user,
+      loggedIn: true
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;

@@ -1,8 +1,9 @@
+<h2>Tech Blog Posts</h2>
 {{#each posts}}
-<div class="card mt-2">
+<div class="card mt-3">
   <div class="card-header custom-card-header justify-space-between">
     <h5>
-      <a href="/post/{{id}}">{{title}}</a>
+      <a class="custom-card-header" href="/post/{{id}}">{{title}}</a>
     </h5>
     <div>Posted by {{user.username}} on {{format_date createdAt}}
     </div>

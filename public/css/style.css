@@ -10,7 +10,16 @@
     color: var(--brown);
     background-color: var(--light);
   }
-  a {
+
+  body {
+    background-color: var(--lightteal);
+    color: var(--teal);
+  }
+  .sectionHeading {
+    align-content: center;
+  }
+
+  .navbar-brand {
     color: var(--lightteal);
   }
   

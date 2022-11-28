@@ -1,6 +1,5 @@
-{{!-- Single Post --}}
 <div class="card">
-  <div class="card-header justify-space-between">
+  <div class="card-header custom-card-header">
     <h5> {{title}}</h5>
     <div>Posted by {{user.username}} on {{format_date createdAt}}
     </div>
@@ -10,14 +9,15 @@
   </div>
 </div>
 
-{{!-- Comment --}}
 <div class="col-12 mt-2">
-  <form id="guestbook-form">
+  <form id="comment-form">
     <div class="form-group">
-      <textarea type="text" id="comment" class="form-control" placeholder="Leave a comment...">
+      <label for="user-comment">Leave a comment:</label>
+      <textarea id="comment" name="user-comment" class="form-control">
       </textarea>
     </div>
     <button type="submit" class="btn custom-btn">Submit</button>
   </form>
 </div>
 
+<script src="js/comment.js"></script>
