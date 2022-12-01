@@ -1,6 +1,6 @@
 // create router
 const router = require('express').Router();
-const { Post, User } = require('../models');
+const { Post, User, Comment } = require('../models');
 const withAuth = require('../utils/auth');
 
 // get all posts testing to see if it works
@@ -33,19 +33,30 @@ router.get('/', async (req, res) => {
 router.get('/post/:id', async (req, res) => {
   // res.send(`Render single-post view along with the post with id ${req.params.id} retreived from database.`);
   try {
+    console.log('#36 home-routes', req.session)
     const dpPostData = await Post.findByPk(req.params.id, {
       include: [
-        {
-          model: User,
-          attributes: ['username'],
+        { model: User, 
+          attributes: ['id', 'username']
         },
+        {
+          model: Comment, 
+          include: { 
+            model: User, 
+            attributes: ['id', 'username'], 
+          },
+        }
       ],
     });
-
     const post = dpPostData.get({ plain: true });
+    console.log('post', post)
+
+    const postId = req.params.id
+    console.log('postId', postId)
+
     res.render('singlePost', { 
       ...post,
-      loggedIn: req.session.loggedIn 
+      loggedIn: req.session.loggedIn, postId 
     });
 
   } catch (err) {

@@ -9,15 +9,33 @@
   </div>
 </div>
 
+{{!-- Add Comment --}}
 <div class="col-12 mt-2">
   <form id="comment-form">
     <div class="form-group">
       <label for="user-comment">Leave a comment:</label>
-      <textarea id="comment" name="user-comment" class="form-control">
+      <textarea id="comment" name="user-comment" class="form-input">
       </textarea>
     </div>
     <button type="submit" class="btn custom-btn">Submit</button>
   </form>
 </div>
 
-<script src="js/comment.js"></script>
+{{!-- Previous Comments --}}
+{{#if comments.length}}
+<div class="col-12 post-list">
+  <h3>Comments:</h3>
+{{#each comments as |comment|}}
+<div class="card">
+  <div class="card-header custom-card-header">
+    <h5> Comment posted by: {{user.username}} on {{format_date createdAt}}</h5>
+  </div>
+  <div class="card-body">
+    <p class="card-text">{{content}}</p>
+  </div>
+</div>
+{{/each}}
+</div>
+{{/if}}
+
+<script src="/js/comment.js"></script>

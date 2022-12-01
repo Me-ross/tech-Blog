@@ -31,18 +31,21 @@
 {{#each posts as |post|}}
 <div class="card mt-3">
   <div class="card-header custom-card-header justify-space-between">
-    <h5 class="custom-card-header">{{title}}</h5>
+    <h5 class="custom-card-header updateTitle">{{title}}</h5>
     <div>Posted by you on {{format_date createdAt}}
     </div>
   </div>
   <div class="card-body custom-card">
-    <p class="card-text">{{content}}</p>
+    {{!-- <p class="card-text">{{content}}</p> --}}
+    <textarea class="form-input" id="updateContent" name="post-content">{{content}}</textarea>
   </div>
   <div class="col-md-4">
-    <button class="btn btn-sm custom-btn" post-id="{{post.id}}">UPDATE</button>
+    <button class="btn btn-sm custom-btn" id="update" post-id="{{post.id}}">UPDATE</button>
   </div>
   <div class="col-md-4">
-    <button class="btn btn-sm custom-btn mt-2" post-id="{{post.id}}">DELETE</button>
+    <div>
+    <button class="btn btn-sm custom-btn mt-2" id="delete" post-id="{{post.id}}">DELETE</button>
+    </div>
   </div>
 </div>
     {{/each}}
@@ -51,3 +54,4 @@
 </div>
 
 <script src="./js/dashboard.js"></script>
+
