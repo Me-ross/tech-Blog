@@ -20,7 +20,7 @@ const response = await fetch('/api/user/login', {
 console.log("line20, login.js", response)
 
 if (response.ok) {
-// if response ok go to homepage change to dashboard ('/dashboard)
+// if response ok go to dashboard ('/dashboard)
 document.location.replace('/dashboard');
 } else {
    alert('Incorrect username or password, please try again');

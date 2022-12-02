@@ -25,20 +25,17 @@ const newPostHandler = async (event) => {
   };
 
 // Deleting Posts
-const delButtonHandler = async (event) => {
-  if (event.target.hasAttribute('post-id')) {
-    const id = event.target.getAttribute('post-id');
- 
+const delButtonHandler = async (id) => {
+    console.log(id) 
     const response = await fetch(`/api/posts/${id}`, {
       method: 'DELETE',
     });
-  
+  console.log(response)
     if (response.ok) {
       document.location.replace('/dashboard');
-    } else {
-      alert('Failed to delete post');
+    // } else {
+    //   alert('Failed to delete post');
     }
-  }
 };
 
 // Update Post
@@ -70,10 +67,16 @@ document
   .querySelector('form')
   .addEventListener('submit', newPostHandler);
 
-document
-  .querySelector('#delete')
-  .addEventListener('click', delButtonHandler);
 
 document
   .querySelector('#update')
   .addEventListener('click', updateButtonHandler);
+
+// eventlistener call happens before elements are dynamically created. So have to access buttons this way
+document.addEventListener("click", function(e){
+  const target = e.target.closest("#delete");
+    if(target){
+      const id = e.target.getAttribute('post-id');
+    delButtonHandler(id);
+  }
+});
