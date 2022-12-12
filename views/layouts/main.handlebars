@@ -15,17 +15,12 @@
 
   <nav class="navbar navbar-expand-sm custom-navbar">
     <a class="navbar-brand" href="/">The Tech-Blog</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbar">
+    <div class="navbar-collapse" id="navbar">
       <div class="navbar-nav ml-auto">
         <a class="nav-item nav-link" href="/">Home</a>
         <a class="nav-item nav-link" href="/dashboard">Dashboard</a>
         {{#if loggedIn}}
         <button class="no-button" id="logout">Logout</button>
-        {{!-- <a class="nav-item nav-link" href="#">Logout</a> --}}
         {{else}}
         <a class="nav-item nav-link" href="/login">Login</a>
         {{/if}}
@@ -33,22 +28,8 @@
     </div>
   </nav>
 
-  {{!-- <section class="jumbotron jumbotron-fluid custom-jumbotron">
-    <div class="container">
-      <div class="row align-items-center">
-        <div class="col-12 col-md-6 text-right">
-          <h1>
-            Welcome to the Tech-Blog!
-          </h1>
-        </div>
-        <div class="col-12 col-md-6">
-        </div>
-      </div>
-    </div>
-  </section> --}}
-
   <main class="container my-3">
-    <div class="row">
+    <div class="row text-center">
       {{{body}}}
     </div>
   </main>
